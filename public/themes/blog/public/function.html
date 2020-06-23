@@ -1,0 +1,25 @@
+<php>
+    function category(){ 
+        $portalCategoryModel = new \app\portal\model\PortalCategoryModel();
+         $where = ['delete_time' => 0]; 
+         $res = $portalCategoryModel->where($where)->select();
+         if($res){
+            $data = [];
+            foreach($res as $val){
+                $data[$val['id']] = $val['name'];
+            }
+            return $data;
+         }else{
+             return false;
+         }
+    }
+    $category_arr = category();
+
+    function next_pre($id,$category_id){
+        $model = new \app\portal\service\PostService();
+        $data['next'] = $model->publishedPrevArticle($id, $category_id);
+        $data['prev'] = $model->publishedNextArticle($id, $category_id);
+        return $data;
+    }
+
+</php>

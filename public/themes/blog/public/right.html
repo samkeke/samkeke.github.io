@@ -1,0 +1,50 @@
+<div class="r_box f_r">
+    <div class="tit01">
+        <h2 class="tit">关注我</h2>
+        <div class="gzw">
+            <ul>
+                <li><span class="icon icon-user"></span> <b>王刻</b></li>
+                <li><span class="icon icon-unif1d6"></span> <b>2498871854</b></li>
+                <!--<li><span class="icon icon-phone"></span> <b>15093565100</b></li>-->
+                <li><span class="icon icon-github_sign"> <b> https://gitee.com/mayunwangxiaoyu</b></span></li>
+                <li><span class="icon icon-envelope"></span> <b>lampwxy@163.com</b></li>
+            </ul>
+        </div>
+    </div>
+    <!--tit01 end-->
+    <widget name="recommended_articles">
+        <div class="tuwen">
+            <h2 class="tit">{$widget.title}</h2>
+            <ul>
+                <foreach name="recommended" item="vo">
+                    <li>
+                        <a href="{:cmf_url('portal/Article/index',array('id'=>$vo['id'],'cid'=>$vo['category_id']))}" target="_blank">
+                            <if condition="empty($vo.thumbnail)">
+                                <img src="__TMPL__/public/assets/images/0{:mt_rand(1,6)}.jpg" alt="{$vo.post_title}">
+                                <else/>
+                                <img src="{:cmf_get_image_url($vo.thumbnail)}" alt="{$vo.post_title}"/>
+                            </if>
+                            <b>{$vo.post_title}</b></a>
+                        <p><span class="tulanmu"><a href="{:cmf_url('portal/List/index',array('id'=>$vo['category_id']))}" target="_blank">{$category_arr[$vo.category_id]}</a></span><span class="tutime">{$vo.create_time|date='Y-m-d',###}</span></p>
+                    </li>
+                </foreach>
+            </ul>
+        </div>
+    </widget>
+    <widget name="hottest_articles">
+        <div class="ph">
+            <h2 class="tit">{$widget.title}</h2>
+            <ul class="rank">
+                <foreach name="hotPortal" item="vo">
+                    <li>
+                        <a title="{$vo.post_title}"
+                           href="{:cmf_url('portal/Article/index',array('id'=>$vo['id'],'cid'=>$vo['category_id']))}"  target="_blank">
+                            {$vo.post_title}
+                        </a>
+                    </li>
+                </foreach>
+            </ul>
+        </div>
+    </widget>
+<!--    <div class="ad"> <img src="__TMPL__/public/assets/images/03.jpg" alt="{$site_info.site_name|default=''}"> </div>-->
+</div>

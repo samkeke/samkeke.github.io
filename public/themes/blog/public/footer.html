@@ -1,0 +1,17 @@
+<footer>
+    <div class="footer">
+        <hook name="footer_start"/>
+        <div class="f_l">
+            友情链接：
+            <links>
+                <a href="{$vo.url|default=''}" target="{$vo.target|default=''}">{$vo.name|default=''}</a>&nbsp;
+            </links>
+            <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1276172413'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1276172413%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+        </div>
+        <div class="f_r">
+            <p>版权所有：<a href="http://www.wangxyu.com">{$site_info.site_name|default=''}</a> 备案号： <a href="http://www.miitbeian.gov.cn" rel="nofollow">{$site_info.site_icp|default=''}</a></p>
+        </div>
+    </div>
+</footer>
+{$site_info.site_analytics|default=''}

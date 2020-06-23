@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>  
+    <title>{$site_info.site_name|default=''}</title>
+    <meta name="keywords" content="{$site_info.site_seo_keywords|default=''}" />
+    <meta name="description" content="{$site_info.site_seo_description|default=''}" />
+    <include file="public@head"/>
+    <include file="public@function"/>
+    <link href="__TMPL__/public/assets/css/index.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="wrapper">
+        <include file="public@header"/>
+        <div class="jztop"></div>
+        <div class="container">
+            <div class="bloglist f_l">
+                <foreach name="indexList" item="vo">
+                    <h2><a href="{:cmf_url('portal/Article/index',array('id'=>$vo['id'],'cid'=>$vo['category_id']))}">{$vo.post_title}</a></h2>
+                    <figure>
+                        <if condition="empty($vo.thumbnail)">
+                            <img src="__TMPL__/public/assets/images/img_{:mt_rand(1,4)}.jpg" alt="{$vo.post_title}">
+                        <else/>
+                            <img src="{:cmf_get_image_url($vo.thumbnail)}" alt="{$vo.post_title}"/>
+                        </if>
+                    </figure>
+                    <ul>
+                        <p> 摘要：{$vo.post_excerpt|default=''} </p>
+                        <a title="{$vo.post_title}" href="{:cmf_url('portal/Article/index',array('id'=>$vo['id'],'cid'=>$vo['category_id']))}" target="_blank" class="readmore">阅读全文&gt;&gt;</a>
+                    </ul>
+                    <p class="dateview"><span>{:date('Y-m-d H:i:s',$vo['create_time'])}</span><span></span><span>{$site_info.site_name|default=''}：[<a href="{:cmf_url('portal/List/index',array('id'=>$vo['category_id']))}">{$category_arr[$vo.category_id]}</a>]</span></p>
+                </foreach>
+            </div>
+            <include file="public@right"/>
+        </div>
+        <!-- container代码 结束 -->
+        <div class="jzend"></div>
+        <include file="public@footer"/>
+    </div>
+</body>
+
+</html>
